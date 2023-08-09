@@ -1,23 +1,21 @@
 const router = require('express').Router()
-const { models: { Food, Playlist }} = require('../db')
+const { models: { Item}} = require('../db')
 module.exports = router
 
 
 router.get('/', async (req, res, next) => {
   try {
-    const foods = await Food.findAll({
-      include: Playlist,
-    });
-    res.json(foods);
+    const items = await Item.findAll();
+    res.json(items);
   } catch (err) {
     next(err);
   }
 });
 
-//POST: add a new Food
+//POST: add a new Item
 router.post("/", async (req, res, next) => {
   try {
-    res.status(201).send(await Food.create(req.body));
+    res.status(201).send(await Item.create(req.body));
   } catch (error) {
     next(error);
   }
@@ -25,20 +23,18 @@ router.post("/", async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const food = await Food.findByPk(req.params.id)
-    res.send(await food.update(req.body));
+    const item = await Item.findByPk(req.params.id)
+    res.send(await item.update(req.body));
   } catch (error) {
     next(error);
   }
 });
 
-//Get read all foods
+//Get read all items
 router.get('/:id', async (req, res, next) => {
   try {
-    const food = await Food.findByPk(req.params.id, {
-      include: Playlist,
-    });
-    res.json(food);
+    const item = await Item.findByPk(req.params.id);
+    res.json(item);
   } catch (err) {
     next(err);
   }
@@ -46,9 +42,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    const food = await Food.findByPk(req.params.id);
-    await food.destroy();
-    res.send(food);
+    const item = await Item.findByPk(req.params.id);
+    await item.destroy();
+    res.send(item);
   } catch (error) {
     next(error);
   }
