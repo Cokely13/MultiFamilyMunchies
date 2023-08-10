@@ -2,7 +2,10 @@ const router = require('express').Router()
 module.exports = router
 
 router.use('/users', require('./users'))
-router.use('/foods', require('./foods'))
+router.use('/items', require('./items'))
+router.use('/listItems', require('./listitems'))
+router.use('/lists', require('./lists'))
+router.use('/votes', require('./votes'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')
