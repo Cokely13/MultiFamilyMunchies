@@ -13,7 +13,7 @@ const Vote= db.define('Vote', {
   },
     date: {
       type: Sequelize.DATEONLY,
-      defaultValue: DATEONLY
+      defaultValue: Sequelize.NOW
     },
     confirm: {
       type: Sequelize.ENUM('confirm', 'deny', 'abstain'),

@@ -9,6 +9,15 @@ const Vote = require('./models/Vote')
 const ListItem = require('./models/ListItem')
 
 //associations could go here!
+User.hasMany(List)
+List.belongsTo(User)
+User.hasMany(Vote)
+Vote.belongsTo(User)
+
+Item.belongsToMany(List, { through: 'ListItem' });
+List.belongsToMany(Item, { through: 'ListItem' });
+
+
 
 module.exports = {
   db,

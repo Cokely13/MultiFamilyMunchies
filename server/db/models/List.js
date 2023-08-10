@@ -13,7 +13,7 @@ const List = db.define('List', {
     },
     date: {
       type: Sequelize.DATEONLY,
-      defaultValue: DATEONLY
+      defaultValue: Sequelize.NOW
     }
 
   });
